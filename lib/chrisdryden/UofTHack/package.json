@@ -1,0 +1,21 @@
+{
+  "name": "uofthack",
+  "version": "0.0.0",
+  "description": "",
+  "author": "chrisdryden <christopher.paul.dryden@gmail.com>",
+  "main": "functions/__main__.js",
+  "dependencies": {
+    "lib": "^3.0.1"
+  },
+  "private": true,
+  "stdlib": {
+    "build": "faaslang",
+    "name": "chrisdryden/uofthack",
+    "timeout": 10000,
+    "publish": true,
+    "personalize": {
+      "keys": [],
+      "user": []
+    }
+  }
+}
