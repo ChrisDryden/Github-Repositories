@@ -5,7 +5,7 @@ Created on Sat Jan 20 15:06:42 2018
 @author: Chris Dryden
 """
 
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, make_response, request, abort
 app = Flask(__name__)
 
 
@@ -36,7 +36,7 @@ class FacebookBot(Client):
             self.send(message_object, thread_id=thread_id, thread_type=thread_type)
             
 
-@app.route('/todo/api/v1.0/tasks', methods=['POST'])
+@app.route('/', methods=['POST'])
 def create_task():
     if not request.json or not 'title' in request.json:
         abort(400)
@@ -52,5 +52,8 @@ def not_found(error):
 
 if __name__ == '__main__':
     client = FacebookBot("christopher.dryden@utsu.ca", "toronto9")
-    app.run(debug=True)    
+    app.run(
+    host=os.getenv('LISTEN', '0.0.0.0'),
+    port=int(os.getenv('PORT', '8080')))   
+    
     client.listen()
